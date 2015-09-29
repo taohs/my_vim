@@ -1,8 +1,10 @@
 "自己定义vimrc常见设置和一些键位的设置
-
+"p> j
+set nocompatible              " be iMproved, required
+filetype off 
 "---------------- 加载插件管理文件 --------------------
 if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
+"    source ~/.vimrc.bundles
 endif
 
 " 在插入模式下MAC下的delete不能删除问题
@@ -67,13 +69,13 @@ set foldlevel=99
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
 fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
+if g:FoldMethod == 0
+    exe "normal! zM"
+    let g:FoldMethod = 1
+else
+    exe "normal! zR"
+    let g:FoldMethod = 0
+endif
 endfun
 
 set smartindent              " 智能缩进
@@ -143,7 +145,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " 只有在是PHP文件时，才启用PHP补全
 au FileType php call AddPHPFuncList()
 function AddPHPFuncList()
-    set dictionary-=~/.vim/funclist.txt dictionary+=~/.vim/funclist.txt
+    set dictionary-=/Users/macbook/.vim/funclist.txt   dictionary+=/Users/macbook/.vim/funclist.txt
     set complete-=k complete+=k
 endfunction
 
