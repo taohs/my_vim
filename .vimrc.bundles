@@ -6,9 +6,10 @@ call vundle#begin()
 
 "------------- 插件列表 ---------------------------
 "插件设置和vim基本设置单独放置
-
 Plugin 'gmarik/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
+"plugin "brookhong/DBGPavim"
+"Plugin 'joonty/vdebug'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'

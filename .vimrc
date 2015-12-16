@@ -4,7 +4,7 @@ set nocompatible              " be iMproved, required
 filetype off 
 "---------------- 加载插件管理文件 --------------------
 if filereadable(expand("~/.vimrc.bundles"))
-"    source ~/.vimrc.bundles
+    source ~/.vimrc.bundles
 endif
 
 " 在插入模式下MAC下的delete不能删除问题
@@ -27,7 +27,6 @@ filetype plugin on
 filetype plugin indent on
 
 colorscheme molokai         " 配色主题
-
 set autoread                 " 文件修改之后自动载入。
 set shortmess=atI            " 启动的时候不显示那个援助索马里儿童的提示
 
@@ -106,16 +105,27 @@ set wildignore=*.0,*~,*.pyc,*.class
 autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 
 "------------------------------- 自定义快捷键设置 -----------------
-
+"F1 ~ F12 
+"
+nnoremap <f2> :NERDTree<CR>
+nnoremap <f3> :NERDTree<CR>
+"
+"方向键
+inoremap <c-f> <Right>
+inoremap <c-b> <Left>
+inoremap <c-h> <Left>
+inoremap <c-l> <Right>
+inoremap <c-j> <Down>
+inoremap <c-k> <Up>
 " 关闭方向键，使用hjkl
-map <Left> <Nop>             
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop> 
+"map <Left> <Nop>             
+"map <Right> <Nop>
+"map <Up> <Nop>
+"map <Down> <Nop> 
 
 " 行首 和 行尾 map
-noremap H ^
-noremap L $
+noremap <c-a> ^
+noremap <c-e> $
 
 " 切换到命令模式map 
 noremap ; :
@@ -136,18 +146,22 @@ noremap wl <c-w><right>
 noremap w<down> <c-w><down>
 noremap wj <c-w><down>
 
+"debug shezhi 
+"let g:vdebug_options['port']=9001
+"let g:vdebug_options['ide_key']='vim'
+
 " python 文件的一般设置
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 
 " php自动完成
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " 只有在是PHP文件时，才启用PHP补全
-au FileType php call AddPHPFuncList()
-function AddPHPFuncList()
-    set dictionary-=/Users/macbook/.vim/funclist.txt   dictionary+=/Users/macbook/.vim/funclist.txt
-    set complete-=k complete+=k
-endfunction
+"au FileType php call AddPHPFuncList()
+"function AddPHPFuncList()
+"    set dictionary-=/Users/macbook/.vim/funclist.txt dictionary+=/Users/macbook/.vim/funclist.txt
+"    set complete-=k complete+=k
+"endfunction
 
 
 " 定义函数AutoSetFileHead，自动插入文件头
