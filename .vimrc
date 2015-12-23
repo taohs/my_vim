@@ -1,10 +1,12 @@
 "自己定义vimrc常见设置和一些键位的设置
 
 "---------------- 加载插件管理文件 --------------------
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
+if filereadable(expand("~/.vim/.vimrc.bundles"))
+    source ~/.vim/.vimrc.bundles
 endif
-
+if filereadable(expand("~/.vim/.vimrc.bundles.plugin"))
+    source ~/.vim/.vimrc.bundles.plugin
+endif
 " 在插入模式下MAC下的delete不能删除问题
 set backspace=2
 
