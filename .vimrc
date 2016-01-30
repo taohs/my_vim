@@ -62,7 +62,7 @@ set ignorecase               " 搜索忽略大小写
 set smartcase                " 有一个或以上大写字母时仍大小敏感
 
 set foldenable               " 代码折叠
-set foldmethod=indent
+set foldmethod=manual        " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
 set foldlevel=99             
 
 " 代码折叠自定义快捷键
@@ -108,10 +108,10 @@ autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 "------------------------------- 自定义快捷键设置 -----------------
 
 " 关闭方向键，使用hjkl
-map <Left> <Nop>             
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop> 
+"map <Left> <Nop>             
+"map <Right> <Nop>
+"map <Up> <Nop>
+"map <Down> <Nop> 
 
 " 行首 和 行尾 map
 noremap H ^
@@ -147,7 +147,7 @@ autocmd FileType php inoremap <leader>a <C-x><C-o>
 " 只有在是PHP文件时，才启用PHP补全
 au FileType php call AddPHPFuncList()
 function! AddPHPFuncList()
-    set dictionary-=/Users/joshua/.vim/funclist.txt dictionary+=/Users/joshua/.vim/funclist.txt
+    set dictionary-=~/.vim/funclist.txt dictionary+=~/.vim/funclist.txt
     set complete-=k complete+=k
 endfunction
 
@@ -349,11 +349,11 @@ augroup LastEditMarker
 augroup END
 
 " vim，主机复制共享
-vmap <C-c> "+y
-vmap <C-x> "+c    
-vmap <C-v> c<ESC>"+p    
-imap <C-v> <C-r><C-o>+    
-nmap <C-v> "+p
+"vmap <C-c> "+y
+"vmap <C-x> "+c    
+"vmap <C-v> c<ESC>"+p    
+"imap <C-v> <C-r><C-o>+    
+"nmap <C-v> "+p
 
 " powerline设置
 set guifont=PowerlineSymbols\ for\ Powerline

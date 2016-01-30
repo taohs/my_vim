@@ -8,65 +8,68 @@ call vundle#begin()
 "插件设置和vim基本设置单独放置
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'itchyny/lightline.vim'
+"Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'majutsushi/tagbar'
-Plugin 'taglist.vim'
-Plugin 'basepi/vim-conque'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'tacahiroy/ctrlp-funky'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'taglist.vim'
+"Plugin 'basepi/vim-conque'
 
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-commentary'
-Plugin 'sjl/gundo.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'tpope/vim-commentary'
+"Plugin 'sjl/gundo.vim'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'tpope/vim-fugitive'
 
 " python
-Plugin 'kevinw/pyflakes-vim'
-Plugin 'hdima/python-syntax'
-Plugin 'pep8'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'python.vim--Vasiliev'
-Plugin 'hynek/vim-python-pep8-indent'
+"Plugin 'kevinw/pyflakes-vim'
+"Plugin 'hdima/python-syntax'
+"Plugin 'pep8'
+"Plugin 'tell-k/vim-autopep8'
+"Plugin 'python.vim--Vasiliev'
+"Plugin 'hynek/vim-python-pep8-indent'
 
 " php
-Plugin 'shawncplus/phpcomplete.vim'
+"Plugin 'shawncplus/phpcomplete.vim'
 
 " golang
-Plugin 'fatih/vim-go'
-Plugin 'dgryski/vim-godef'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+"Plugin 'fatih/vim-go'
+"Plugin 'dgryski/vim-godef'
+"Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " markdown
+"Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-
+"Plugin 'suan/vim-instant-markdown'
 " 多光标
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 
 " 快速注释
 Plugin 'scrooloose/nerdcommenter'
 
 " 对齐线
-Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'nathanaelkane/vim-indent-guides'
 
 " 全局搜索
-Plugin 'rking/ag.vim'
+"Plugin 'rking/ag.vim'
 
 " 跳转到上次修改的地方
-Plugin 'vim-scripts/last_edit_marker.vim'
+"Plugin 'vim-scripts/last_edit_marker.vim'
 
 " powerline
-Plugin 'powerline/powerline'
+"Plugin 'powerline/powerline'
 
 " gitgutter
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 
 " gitv
-Plugin 'vim-scripts/gitv'
-
+"Plugin 'vim-scripts/gitv'
+" zencoding 已经改名未 memet
+Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/zencoding-vim.vim' "已经废弃
 call vundle#end()
 filetype plugin indent on
