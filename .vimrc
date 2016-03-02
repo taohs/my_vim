@@ -124,7 +124,7 @@ noremap ; :
 inoremap kj <Esc>       
 
 nnoremap <leader>q :q!<CR>
-nnoremap <leader>w :wq<CR>
+nnoremap <leader>w :w<CR>
 
 " 分屏切换
 noremap w<up> <c-w><up>
