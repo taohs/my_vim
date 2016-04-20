@@ -10,13 +10,18 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 "Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'tacahiroy/ctrlp-funky'
-"Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/tagbar-phpctags'
 "Plugin 'taglist.vim'
 "Plugin 'basepi/vim-conque'
 
-Plugin 'Valloric/YouCompleteMe'
+"Mac 下 DASH 支持
+Plugin 'rizzatti/dash.vim'
+
+"YouCompleteMe support C,C++,Python,Java  not suport php
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'Raimondi/delimitMate'
 "Plugin 'scrooloose/syntastic'
 "Plugin 'jiangmiao/auto-pairs'
@@ -33,7 +38,7 @@ Plugin 'Valloric/YouCompleteMe'
 "Plugin 'python.vim--Vasiliev'
 "Plugin 'hynek/vim-python-pep8-indent'
 
-" php
+" php support
 "Plugin 'shawncplus/phpcomplete.vim'
 
 " golang
@@ -62,7 +67,7 @@ Plugin 'scrooloose/nerdcommenter'
 
 " powerline
 "Plugin 'powerline/powerline'
-
+Plugin 'Lokaltog/vim-powerline'
 " gitgutter
 "Plugin 'airblade/vim-gitgutter'
 
@@ -71,5 +76,7 @@ Plugin 'scrooloose/nerdcommenter'
 " zencoding 已经改名未 memet
 Plugin 'mattn/emmet-vim'
 "Plugin 'mattn/zencoding-vim.vim' "已经废弃
+Plugin 'jQuery'
+Plugin 'othree/html5.vim'
 call vundle#end()
 filetype plugin indent on

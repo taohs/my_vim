@@ -7,27 +7,33 @@ endif
 if filereadable(expand("~/.vim/.vimrc.bundles.plugin"))
     source ~/.vim/.vimrc.bundles.plugin
 endif
+"tagbar 系列插件设置 tagbar  tagbarlist tag-phpctags
+if filereadable(expand("~/.vim/.vimrc.bundles.plugin.tagbar"))
+    source ~/.vim/.vimrc.bundles.plugin.tagbar
+endif
 " 在插入模式下MAC下的delete不能删除问题
 set backspace=2
 
 "--------------- leader设定 -------------
-let mapleader = ','
-let g:mapleader = ','
+"let mapleader = ','
+"let g:mapleader = ','
 
 "------------------------------- 基本设置 -----------------------------------
 
 "开启语法高亮
 "syntax enable 该命令只在当前文件有效
-syntax on " 所有缓冲区文件都有效
-
+"syntax on " 所有缓冲区文件都有效
+syntax enable
 "-------------- 文件检测 ----------------------
 filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
 
-colorscheme molokai         " 配色主题
-
+"set background=dark
+"colorscheme Tomorrow-Night-Eighties      " 配色主题
+colorscheme molokai
+"set nocp
 set autoread                 " 文件修改之后自动载入。
 set shortmess=atI            " 启动的时候不显示那个援助索马里儿童的提示
 
@@ -62,9 +68,11 @@ set ignorecase               " 搜索忽略大小写
 set smartcase                " 有一个或以上大写字母时仍大小敏感
 
 set foldenable               " 代码折叠
-set foldmethod=manual        " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
+set foldmethod=indent      " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
 set foldlevel=99             
-
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+au BufRead,BufNewFile *.volt set ft=html syntax=html "设置 volt phtml 为 html 格式高亮 和缩进
+au BufRead,BufNewFile *.phtml set ft=html syntax=html
 " 代码折叠自定义快捷键
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
@@ -120,8 +128,6 @@ noremap L $
 " 切换到命令模式map 
 noremap ; :
 
-" 插入模式下 kj 映射到 Esc
-inoremap kj <Esc>       
 
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>w :w<CR>
@@ -142,7 +148,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 " php自动完成
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " 当文件类型为php时，将系统自动补全的快捷键更改为 ,a
-autocmd FileType php inoremap <leader>a <C-x><C-o>
+"autocmd FileType php inoremap <leader>a <C-x><C-o>
 
 " 只有在是PHP文件时，才启用PHP补全
 au FileType php call AddPHPFuncList()
@@ -191,19 +197,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 " 分屏打开文件
 let g:NERDTreeMapOpenVSplit = 'v' 
 let g:NERDTreeMapOpenSplit = 's'   
-
-" *********************** tagbar 插件设置 ***********************
-map <leader>g :TagbarToggle<CR>
-let g:tagbar_auto_focus=1
-
-" *********************** taglist 插件设置 **********************
-let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Auto_Open=0
-let Tlist_Auto_Highlight_Tag=1
-let Tlist_Use_Right_Window=1
-let Tlist_WinWidth=35
 
 " *********************** 快速跳转 ******************************
 let g:EasyMotion_smartcase=1
@@ -341,7 +334,7 @@ let g:ycm_filetype_blacklist = {
             \}
 
 " last_edit_marker.vim设置
-nmap <C-y> g'Z
+"nmap <C-y> g'Z
 
 augroup LastEditMarker
     autocmd!
