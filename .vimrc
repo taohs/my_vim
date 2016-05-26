@@ -146,7 +146,7 @@ noremap wj <c-w><down>
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 
 " php自动完成
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP keywordprg=pman
 " 当文件类型为php时，将系统自动补全的快捷键更改为 ,a
 "autocmd FileType php inoremap <leader>a <C-x><C-o>
 
