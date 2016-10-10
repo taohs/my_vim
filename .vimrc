@@ -70,7 +70,7 @@ set smartcase                " 有一个或以上大写字母时仍大小敏感
 set foldenable               " 代码折叠
 set foldmethod=indent      " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
 set foldlevel=99             
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery tabstop=2 shiftwidth=2 softtabstop=2
 au BufRead,BufNewFile *.json set ft=javascript syntax=jquery
 au BufRead,BufNewFile *.volt set ft=html syntax=html "设置 volt phtml 为 html 格式高亮 和缩进
 au BufRead,BufNewFile *.phtml set ft=html syntax=html
@@ -145,6 +145,7 @@ noremap wj <c-w><down>
 
 " python 文件的一般设置
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
 " php自动完成
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP keywordprg=pman
