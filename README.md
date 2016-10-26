@@ -8,6 +8,7 @@ HEAD
 导入后重新执行该命令，将vundle重置为最新的版本；  
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+  
 将.ctags 文件移动至 ~/ 文件夹，是ctags支持php的trait和 scala;
 
 常用快捷键:
