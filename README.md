@@ -9,7 +9,17 @@ HEAD
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
   
-将.ctags 文件移动至 ~/ 文件夹，是ctags支持php的trait和 scala;
+将.ctags 文件移动至 ~/ 文件夹，使tags支持php的trait和 scala;
+```
+# alias phptags='ctags --langmap=php:.engine.inc.module.theme.php  --php-kinds=cdf --languages=php'
+```
+
+将该命令加入 ~/.bash_profile,去掉句首#号注释符后 执行
+```
+source ~/.bash_profile
+```
+即可使用 phptags 命令打包 php项目；
+
 
 常用快捷键:
 
