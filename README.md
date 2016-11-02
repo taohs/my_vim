@@ -38,8 +38,8 @@ k+j						    |insert to normal
 :sp						    |横向切屏
 ,s						    |语法错误信息
 ;/SHIFT+;				    |nornal切换到命令行模式
-H/SHIFT+右箭头 			    |行首
-L/SHIFT+左箭头			    |行尾	
+ctrl+a 			    |行首
+ctrl+e			    |行尾	
 ,+p                         |打开文件搜索栏
 ,+j+d                       |跳转到变量定义处
 F8                          |按PEP8标准格式化文件

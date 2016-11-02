@@ -13,7 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/tagbar-phpctags'
+" Plugin 'vim-scripts/tagbar-phpctags'
 "Plugin 'taglist.vim'
 "Plugin 'basepi/vim-conque'
 

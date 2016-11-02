@@ -1,6 +1,9 @@
 " *********************** tagbar 插件设置 ***********************
 map <leader>g :TagbarToggle<CR>
+let g:tagbar_ctags_bin='ctags'
 let g:tagbar_auto_focus=1
+let g:tagbar_Show_One_File=1
+let g:tagbar_width=60
 
 " *********************** taglist 插件设置 **********************
 "let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
@@ -12,5 +15,5 @@ let g:tagbar_auto_focus=1
 "let Tlist_WinWidth=35
 
 " *********************** tagbar-phpctags         ******************************
-let g:tagbar_phpctags_bin="/usr/local/bin/phpctags"
-let g:tagbar_phpctags_memory_limit = '512M'
+" let g:tagbar_phpctags_bin="/root/phpctags"
+" let g:tagbar_phpctags_memory_limit = '100M'

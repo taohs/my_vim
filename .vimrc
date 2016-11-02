@@ -123,8 +123,8 @@ autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 "map <Down> <Nop> 
 
 " 行首 和 行尾 map
-noremap H ^
-noremap L $
+noremap <c-a> ^
+noremap <c-e> $
 
 " 切换到命令模式map 
 noremap ; :
@@ -363,3 +363,8 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 nnoremap <leader>gs :GitGutterToggle<CR>
+
+
+
+"let Tlist_JS_Settings = 'javascript;s:string;a:array;o:object;f:function'
+"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
