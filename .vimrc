@@ -123,11 +123,10 @@ autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 "map <Down> <Nop> 
 
 " 行首 和 行尾 map
-noremap <c-a> ^
+" noremap <c-a> ^
 noremap <c-e> $
 
 " 切换到命令模式map 
-noremap ; :
 
 
 nnoremap <leader>q :q!<CR>
@@ -351,7 +350,7 @@ augroup END
 "nmap <C-v> "+p
 
 " powerline设置
-set guifont=PowerlineSymbols\ for\ Powerline
+set guifont=PowerlineSymbols\ for\ Powerline:h20
 set nocompatible
 set laststatus=2
 set t_Co=256

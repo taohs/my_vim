@@ -1,5 +1,6 @@
 --langmap=php:.php
 --regex-php=/^[ \t]*trait[ \t]*([a-zA-Z0-9_]+)/\1/t,traits/
+--regex-php=/^[ \t]*const[ \t]*([a-zA-Z0-9_]+)/\1/t,const/
 
 
 --langdef=Scala
