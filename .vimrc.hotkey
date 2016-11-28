@@ -1,0 +1,46 @@
+" =================================================
+" 代码折叠自定义快捷键
+" =================================================
+let g:FoldMethod = 0
+map <leader>zz :call ToggleFold()<cr>
+fun! ToggleFold()
+    if g:FoldMethod == 0
+        exe "normal! zM"
+        let g:FoldMethod = 1
+    else
+        exe "normal! zR"
+        let g:FoldMethod = 0
+    endif
+endfun
+
+" =================================================
+" 热键
+" =================================================
+" 关闭方向键，使用hjkl
+"map <Left> <Nop>             
+"map <Right> <Nop>
+"map <Up> <Nop>
+"map <Down> <Nop> 
+
+" 行首 和 行尾 map
+" noremap <c-a> ^
+noremap <c-e> $
+
+" 切换到命令模式map 
+
+
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w<CR>
+" ================================================
+" 分屏切换
+" ================================================
+noremap w<up> <c-w><up>
+noremap wk <c-w><up>
+noremap w<left> <c-w><left>
+noremap wh <c-w><left>
+noremap w<right> <c-w><right>
+noremap wl <c-w><right>
+noremap w<down> <c-w><down>
+noremap wj <c-w><down>
+
+

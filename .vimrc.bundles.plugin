@@ -4,19 +4,23 @@ filetype off
 
 
 
-"=====pep8 按键==============================================
+" =====pep8 按键==============================================
 if !exists('g:pep8_map')
-let g:pep8_map='<F8>'
+    let g:pep8_map='<F8>'
 endif
-"=====nertree ==============================================
-if !exists(':NERDTree')
-" 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
-" autocmd VimEnter * NERDTree
-" " 按下 F2 调出/隐藏 NERDTree
-map  <F2> :NERDTreeToggle<CR>
-"" 将 NERDTree 的窗口设置在 vim 窗口的右侧（默认为左侧）
-"let NERDTreeWinPos="right"
-" 当打开 NERDTree 窗口时，自动显示 Bookmarks
-let NERDTreeShowBookmarks=1
-" "
+" ===========================================================
+" tagbar
+" ===========================================================
+"tagbar 系列插件设置 tagbar  tagbarlist tag-phpctags
+if filereadable(expand("~/.vim/.vimrc.bundles.plugin.tagbar"))
+    source ~/.vim/.vimrc.bundles.plugin.tagbar
 endif
+
+" ==========================================================
+" NERDTree
+" ==========================================================
+"tagbar 系列插件设置 tagbar  tagbarlist tag-phpctags
+if filereadable(expand("~/.vim/.vimrc.bundles.plugin.nerdtree"))
+    source ~/.vim/.vimrc.bundles.plugin.nerdtree
+endif
+

@@ -27,7 +27,7 @@ Plugin 'rizzatti/dash.vim'
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'tpope/vim-commentary'
 "Plugin 'sjl/gundo.vim'
-"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion' "快速跳转插件
 "Plugin 'tpope/vim-fugitive'
 
 " python

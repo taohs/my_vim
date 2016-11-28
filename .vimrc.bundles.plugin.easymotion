@@ -1,0 +1,7 @@
+" *********************** 快速跳转 ******************************
+let g:EasyMotion_smartcase=1
+map <leader><leader>h <Plug>(easymotion-linebackward)
+map <leader><leader>j <Plug>(easymotion-j)
+map <leader><leader>k <Plug>(easymotion-k)
+map <leader><leader>l <Plug>(easymotion-lineforward)
+map <leader><leader>. <Plug>(easymotion-repeat)

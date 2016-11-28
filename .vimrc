@@ -1,16 +1,17 @@
 "自己定义vimrc常见设置和一些键位的设置
 
+if filereadable(expand("~/.vim/.vimrc.hotkey"))
+    source ~/.vim/.vimrc.hotkey
+endif
 "---------------- 加载插件管理文件 --------------------
+
 if filereadable(expand("~/.vim/.vimrc.bundles"))
     source ~/.vim/.vimrc.bundles
 endif
 if filereadable(expand("~/.vim/.vimrc.bundles.plugin"))
     source ~/.vim/.vimrc.bundles.plugin
 endif
-"tagbar 系列插件设置 tagbar  tagbarlist tag-phpctags
-if filereadable(expand("~/.vim/.vimrc.bundles.plugin.tagbar"))
-    source ~/.vim/.vimrc.bundles.plugin.tagbar
-endif
+
 " 在插入模式下MAC下的delete不能删除问题
 set backspace=2
 
@@ -72,20 +73,8 @@ set foldmethod=indent      " 可以分为Manual（手工折叠）、Indent（缩
 set foldlevel=99             
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery tabstop=2 shiftwidth=2 softtabstop=2
 au BufRead,BufNewFile *.json set ft=javascript syntax=jquery
-au BufRead,BufNewFile *.volt set ft=html syntax=html "设置 volt phtml 为 html 格式高亮 和缩进
-au BufRead,BufNewFile *.phtml set ft=html syntax=html
-" 代码折叠自定义快捷键
-let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
-endfun
+au BufRead,BufNewFile *.volt set ft=xhtml syntax=xhtml "设置 volt phtml 为 html 格式高亮 和缩进
+au BufRead,BufNewFile *.phtml set ft=xhtml syntax=xhtml
 
 set smartindent              " 智能缩进
 set autoindent               " 自动缩进
@@ -116,31 +105,6 @@ autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 
 "------------------------------- 自定义快捷键设置 -----------------
 
-" 关闭方向键，使用hjkl
-"map <Left> <Nop>             
-"map <Right> <Nop>
-"map <Up> <Nop>
-"map <Down> <Nop> 
-
-" 行首 和 行尾 map
-" noremap <c-a> ^
-noremap <c-e> $
-
-" 切换到命令模式map 
-
-
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>w :w<CR>
-
-" 分屏切换
-noremap w<up> <c-w><up>
-noremap wk <c-w><up>
-noremap w<left> <c-w><left>
-noremap wh <c-w><left>
-noremap w<right> <c-w><right>
-noremap wl <c-w><right>
-noremap w<down> <c-w><down>
-noremap wj <c-w><down>
 
 " python 文件的一般设置
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
@@ -159,23 +123,28 @@ function! AddPHPFuncList()
 endfunction
 
 
+" =======================================
 " 定义函数AutoSetFileHead，自动插入文件头
+" =======================================
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
-"如果文件类型为.sh文件
-if &filetype == 'sh'
-    call setline(1, "\#!/bin/bash")
-endif
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
 
-"如果文件类型为python
-if &filetype == 'python'
-    call setline(1, "\#!/usr/bin/env python")
-    call append(1, "\# -*- coding: utf-8 -*- ")
-endif
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# -*- coding: utf-8 -*- ")
+    endif
     normal G
     normal o
     normal o
 endfunc
+
+
+
 
 "set some keyword to highlight
 if has("autocmd")
@@ -188,24 +157,6 @@ endif
 
 " ----------------------- 插件设置 ------------------------------
 
-" *********************** NERDTree 插件设置 *********************
-" vim启动时触发
-" autocmd vimenter * NERDTree
-map <leader>n :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeShowLineNumbers=1
-let NERDTreeIgnore=['\.pyc$', '\~$']
-" 分屏打开文件
-let g:NERDTreeMapOpenVSplit = 'v' 
-let g:NERDTreeMapOpenSplit = 's'   
-
-" *********************** 快速跳转 ******************************
-let g:EasyMotion_smartcase=1
-map <leader><leader>h <Plug>(easymotion-linebackward)
-map <leader><leader>j <Plug>(easymotion-j)
-map <leader><leader>k <Plug>(easymotion-k)
-map <leader><leader>l <Plug>(easymotion-lineforward)
-map <leader><leader>. <Plug>(easymotion-repeat)
 
 " *********************** 语法检查 ******************************
 let g:syntastic_error_symbol='>>'
@@ -264,9 +215,9 @@ let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f : CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \}
+            \ 'dir': '\v[\/]\.(git|hg|svn|rvm)$',
+            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+            \}
 
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
