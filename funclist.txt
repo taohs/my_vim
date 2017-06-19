@@ -8333,3 +8333,7 @@ zip_read
 zlib_get_coding_type
 __halt_compiler
 
+
+try
+catch
+finally

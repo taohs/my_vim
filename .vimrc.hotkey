@@ -34,13 +34,13 @@ nnoremap <leader>w :w<CR>
 " ================================================
 " 分屏切换
 " ================================================
-noremap w<up> <c-w><up>
-noremap wk <c-w><up>
-noremap w<left> <c-w><left>
-noremap wh <c-w><left>
-noremap w<right> <c-w><right>
-noremap wl <c-w><right>
-noremap w<down> <c-w><down>
-noremap wj <c-w><down>
+" noremap w<up> <c-w><up>
+" noremap wk <c-w><up>
+" noremap w<left> <c-w><left>
+" noremap wh <c-w><left>
+" noremap w<right> <c-w><right>
+" noremap wl <c-w><right>
+" noremap w<down> <c-w><down>
+" noremap wj <c-w><down>
 
 

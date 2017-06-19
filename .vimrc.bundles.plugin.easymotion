@@ -5,3 +5,6 @@ map <leader><leader>j <Plug>(easymotion-j)
 map <leader><leader>k <Plug>(easymotion-k)
 map <leader><leader>l <Plug>(easymotion-lineforward)
 map <leader><leader>. <Plug>(easymotion-repeat)
+
+
+"快捷键<leader><leader>w(即,,w)和<leader><leader>b(即,,b)

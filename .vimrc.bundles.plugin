@@ -23,4 +23,7 @@ endif
 if filereadable(expand("~/.vim/.vimrc.bundles.plugin.nerdtree"))
     source ~/.vim/.vimrc.bundles.plugin.nerdtree
 endif
+if filereadable(expand("~/.vim/.vimrc.bundles.plugin.easymotion"))
+    source ~/.vim/.vimrc.bundles.plugin.easymotion
+endif
 

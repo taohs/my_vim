@@ -24,16 +24,20 @@ set backspace=2
 "开启语法高亮
 "syntax enable 该命令只在当前文件有效
 "syntax on " 所有缓冲区文件都有效
-syntax enable
+syntax on
+"syntax enable
 "-------------- 文件检测 ----------------------
 filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
 
+"--------------- 配色 -------------------------
+set t_Co=256
 "set background=dark
 "colorscheme Tomorrow-Night-Eighties      " 配色主题
 colorscheme molokai
+"colorscheme solarized
 "set nocp
 set autoread                 " 文件修改之后自动载入。
 set shortmess=atI            " 启动的时候不显示那个援助索马里儿童的提示
@@ -68,16 +72,19 @@ set incsearch                " 即时搜索
 set ignorecase               " 搜索忽略大小写
 set smartcase                " 有一个或以上大写字母时仍大小敏感
 
-set foldenable               " 代码折叠
-set foldmethod=indent      " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
-set foldlevel=99             
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery tabstop=2 shiftwidth=2 softtabstop=2
-au BufRead,BufNewFile *.json set ft=javascript syntax=jquery
-au BufRead,BufNewFile *.volt set ft=xhtml syntax=xhtml "设置 volt phtml 为 html 格式高亮 和缩进
-au BufRead,BufNewFile *.phtml set ft=xhtml syntax=xhtml
+"set foldclose=all
+"set foldenable               " 代码折叠
+"set foldmethod=marker      " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
+" set foldmethod=indent      " 可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。
+"set foldlevel=99             
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=javascript tabstop=2 shiftwidth=2 softtabstop=2
+au BufRead,BufNewFile *.json set ft=javascript syntax=javascript shiftwidth=2 tabstop=2
+au BufRead,BufNewFile *.volt set ft=html syntax=html shiftwidth=2 tabstop=2 "设置 volt phtml 为 html 格式高亮 和缩进
+au BufRead,BufNewFile *.phtml set ft=html syntax=html shiftwidth=2 tabstop=2
 
-set smartindent              " 智能缩进
-set autoindent               " 自动缩进
+
+"set smartindent              " 智能缩进
+"set autoindent               " 自动缩进
 
 "------------------------------- tab 相关设置 ---------------------
 set tabstop=4                " 设置tab的宽度
@@ -108,7 +115,9 @@ autocmd! bufwritepost .vimrc source % " vimrc 文件修改后自动加载
 
 " python 文件的一般设置
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType php set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd BufNewFile *.js exec ":call AutoSetFileHead()"
 
 " php自动完成
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP keywordprg=pman
@@ -118,7 +127,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP keywordprg=pman
 " 只有在是PHP文件时，才启用PHP补全
 au FileType php call AddPHPFuncList()
 function! AddPHPFuncList()
-    set dictionary-=~/.vim/funclist.txt dictionary+=~/.vim/funclist.txt
+    set dictionary-=~/.vim/funclist.txt dictionary+=~/.vim/funclist.txt dictionary+=~/.vim/phpunit.txt
     set complete-=k complete+=k
 endfunction
 
@@ -137,6 +146,15 @@ function! AutoSetFileHead()
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# -*- coding: utf-8 -*- ")
+    endif
+
+    if &filetype == 'javascript'
+        call setline(1,"/*jslint")
+        call setline(2, "node :true, continue:true, devel:true")
+        call setline(3, ", indent:2, maxerr:50, newcap:true")
+        call setline(4, ", nomen:true,  plusplus:true, regexp:true")
+        call setline(5, ", sloppy:true, vars:false, white:true")
+        call setline(6, "*/")
     endif
     normal G
     normal o
@@ -159,28 +177,28 @@ endif
 
 
 " *********************** 语法检查 ******************************
-let g:syntastic_error_symbol='>>'
-let g:syntastic_warning_symbol='>'
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_enable_highlighting=1
-let g:syntastic_python_checkers=['pyflakes', 'pep8']
-let g:syntastic_python_pep8_args='--ignore=E501,E225'
-
-let g:syntastic_always_populate_loc_list=0
-let g:syntastic_auto_loc_list=0
-let g:syntastic_loc_list_height=3
-
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        "Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
-
-nnoremap <leader>s :call ToggleErrors()<cr>
+"let g:syntastic_error_symbol='>>'
+"let g:syntastic_warning_symbol='>'
+"let g:syntastic_check_on_open=1
+"let g:syntastic_check_on_wq=0
+"let g:syntastic_enable_highlighting=1
+"let g:syntastic_python_checkers=['pyflakes', 'pep8']
+"let g:syntastic_python_pep8_args='--ignore=E501,E225'
+"
+"let g:syntastic_always_populate_loc_list=0
+"let g:syntastic_auto_loc_list=0
+"let g:syntastic_loc_list_height=3
+"
+"function! ToggleErrors()
+"    let old_last_winnr = winnr('$')
+"    lclose
+"    if old_last_winnr == winnr('$')
+"        "Nothing was closed, open syntastic error location panel
+"        Errors
+"    endif
+"endfunction
+"
+"nnoremap <leader>s :call ToggleErrors()<cr>
 
 " *********************** autopep8语法检查 ******************************
 let g:autopep8_max_line_length=79
@@ -208,113 +226,65 @@ let g:vim_markdown_folding_disable = 1
 " let g:multi_cursor_quit_key='<Esc>'
 
 " *********************** 快速注释 ******************************
-let g:NERDSpaceDelims = 1
-
-" *********************** 文件搜索插件 **************************
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f : CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-            \ 'dir': '\v[\/]\.(git|hg|svn|rvm)$',
-            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-            \}
-
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
-
-" ctrlp相关插件 函数搜索
-nnoremap <Leader>fu: CtrlPFunky<Cr>
-nnoremap <Leader>fU:execute 'CtrlpFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
-
-" *********************** pyflakes_vim 插件设置 *****************
-let g:pyflakes_user_quickfix=0
-
-" *********************** python-syntax *************************
-let python_highlight_all=1
-
-" *********************** vim-markdown **************************
-let g:vim_mardown_folding_disabled=1
-
-" *********************** 自动补全插件 **************************
-let g:ycm_key_list_select_completion=['<Down>']
-let g:ycm_key_lsit_previous_completion=['<Up>']
-let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
-let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
-let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
-let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" ********************** 对齐线设置 ****************************
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1 
-set ts=4 sw=4 et
-let g:indent_guides_start_level = 2
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-hi IndentGuidesOdd guibg=red ctermbg=3
-
-hi IndentGuidesEven guibg=green ctermbg=4
-
-" 跳转到定义处, 分屏打开
-let g:ycm_goto_buffer_command = 'vertical-split'
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-" 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
-" old version
-if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf ="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-endif
-" new version
-if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-endif
-
-" 直接触发自动补全 insert模式下
-" let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_key_list_select_completion=['<tab>', '<Down>']
-" 黑名单,不启用
-let g:ycm_filetype_blacklist = {
-            \ 'tagbar' : 1,
-            \ 'gitcommit' : 1,
-            \}
-
-" last_edit_marker.vim设置
-"nmap <C-y> g'Z
-
-augroup LastEditMarker
-    autocmd!
-    autocmd InsertLeave * normal mZ
-augroup END
-
-" vim，主机复制共享
-"vmap <C-c> "+y
-"vmap <C-x> "+c    
-"vmap <C-v> c<ESC>"+p    
-"imap <C-v> <C-r><C-o>+    
-"nmap <C-v> "+p
-
-" powerline设置
-set guifont=PowerlineSymbols\ for\ Powerline:h20
-set nocompatible
-set laststatus=2
-set t_Co=256
-let g:Powerline_symbols = 'fancy'
-let Powerline_symbols='compatible'    
-
-" gitgutter设置
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 0
-let g:gitgutter_highlight_lines = 1
-nnoremap <leader>gs :GitGutterToggle<CR>
+"let g:NERDSpaceDelims = 1
+"
+"" *********************** 文件搜索插件 **************************
+"let g:ctrlp_map = '<leader>p'
+"let g:ctrlp_cmd = 'CtrlP'
+"map <leader>f : CtrlPMRU<CR>
+"let g:ctrlp_custom_ignore = {
+"            \ 'dir': '\v[\/]\.(git|hg|svn|rvm)$',
+"            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+"            \}
+"
+"let g:ctrlp_working_path_mode=0
+"let g:ctrlp_match_window_bottom=1
+"let g:ctrlp_max_height=15
+"let g:ctrlp_match_window_reversed=0
+"let g:ctrlp_mruf_max=500
+"let g:ctrlp_follow_symlinks=1
+"
+"" ctrlp相关插件 函数搜索
+"nnoremap <Leader>fu: CtrlPFunky<Cr>
+"nnoremap <Leader>fU:execute 'CtrlpFunky ' . expand('<cword>')<Cr>
+"let g:ctrlp_funky_syntax_highlight = 1
+"let g:ctrlp_extensions = ['funky']
+"
+"" *********************** pyflakes_vim 插件设置 *****************
+"let g:pyflakes_user_quickfix=0
+"
+"" *********************** python-syntax *************************
+"let python_highlight_all=1
+"
+"" *********************** vim-markdown **************************
+"let g:vim_mardown_folding_disabled=1
+"
+"" vim，主机复制共享
+""vmap <C-c> "+y
+""vmap <C-x> "+c    
+""vmap <C-v> c<ESC>"+p    
+""imap <C-v> <C-r><C-o>+    
+""nmap <C-v> "+p
+"
+"" powerline设置
+"set guifont=PowerlineSymbols\ for\ Powerline:h20
+"set nocompatible
+"set laststatus=2
+"let g:Powerline_symbols = 'fancy'
+"let Powerline_symbols='compatible'    
+"
+"" gitgutter设置
+"let g:gitgutter_map_keys = 0
+"let g:gitgutter_enabled = 0
+"let g:gitgutter_highlight_lines = 1
+"nnoremap <leader>gs :GitGutterToggle<CR>
 
 
 
-"let Tlist_JS_Settings = 'javascript;s:string;a:array;o:object;f:function'
-"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_JS_Settings = 'javascript;s:string;a:array;o:object;f:function'
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+
+set autoindent
+"set cinkeys={%if
+"set cinoptions=2
+
