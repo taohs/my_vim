@@ -22,5 +22,6 @@ if !exists(':NERDTree')
     " 分屏打开文件
     let g:NERDTreeMapOpenVSplit = 'v' 
     let g:NERDTreeMapOpenSplit = 's'   
+    let g:NERDTreeNodeDelimiter=  "\u00a0"
     let NERDTreeWinSize=50
 endif

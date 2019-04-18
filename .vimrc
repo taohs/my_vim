@@ -283,7 +283,6 @@ let g:vim_markdown_folding_disable = 1
 
 let Tlist_JS_Settings = 'javascript;s:string;a:array;o:object;f:function'
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-
 set autoindent
 "set cinkeys={%if
 "set cinoptions=2
